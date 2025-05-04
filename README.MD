@@ -1,93 +1,94 @@
-## 📊 YouTube API – Data Warehouse and Analytics Project
+## 📊 YouTube API – Data Warehouse & Analytics Solution
 
-Welcome to the **YouTube API – Data Warehouse and Analytics Project** repository! 🚀
-This project demonstrates how to source data from the YouTube API and model it effectively to serve analytical needs.
-
----
-
-## 📖 Project Overview
-
-This project focuses on building a modern data analytics pipeline, including:
-
-1. **Data Architecture**: Implementing the Medallion Architecture with **Bronze**, **Silver**, and **Gold** layers.
-2. **ETL Pipelines**: Extracting, transforming, and loading data from YouTube into a structured warehouse.
-3. **Data Modeling**: Creating fact and dimension tables optimized for analysis.
-4. **Analytics & Reporting**: Using SQL and Grafana dashboards to generate actionable insights.
+This repository demonstrates a complete data pipeline that extracts data from the **YouTube Data API**, models it using the **Medallion Architecture**, and delivers business-ready insights via **Grafana dashboards**.
 
 ---
 
-## 🛠️ Tools & Technologies
+## 📦 Project Summary
 
-All tools used are open-source and free:
+This project implements a modern analytics pipeline with:
 
-* PostgreSQL (Database)
-* Virtual Machine (Compute Environment)
-* Apache Airflow (Workflow Orchestration)
-* Grafana (Visualization & Dashboards)
-
----
-
-## 🚧 Project Requirements
-
-### 🎯 Objective
-
-Develop a modern data warehouse using PostgreSQL to consolidate data from YouTube channels and videos, supporting data-driven decision-making.
-
-### ✅ Key Specifications
-
-* **Data Source**: YouTube Data API
-* **Data Quality**: Implement cleaning and validation before analysis
-* **Integration**: Merge data into a user-friendly, query-optimized model
-* **Historical Data**: Store time-series data to track trends (e.g., daily views)
+* **Medallion Architecture**: Structured into **Bronze**, **Silver**, and **Gold** layers for scalable data processing.
+* **ETL Workflows**: Automated extraction, transformation, and loading using **Apache Airflow**.
+* **Data Modeling**: Dimensional modeling in PostgreSQL for optimized querying.
+* **Dashboards**: Real-time reporting using **Grafana**, powered by SQL.
 
 ---
 
-## 📈 Business Intelligence & Reporting
+## 🧰 Tech Stack
 
-### 🎯 Objective
+* **PostgreSQL** – Central data warehouse
+* **Apache Airflow** – Workflow orchestration
+* **Grafana** – Real-time data visualization
+* **Linux VM** – Compute environment for pipeline execution
+* **Python** – API ingestion & transformation logic
 
-Generate SQL-based insights and visual dashboards, including:
+---
 
-* **Top-performing videos by channel**
-* **Channel performance over time**
+## 🎯 Project Objectives
+
+Build a production-ready analytics solution to analyze YouTube channel and video performance:
+
+* Source structured data from the YouTube Data API
+* Clean, validate, and model for business intelligence
+* Persist historical metrics (views, likes, etc.) for trend analysis
+* Deliver actionable insights via dashboards and SQL queries
 
 ---
 
-## 🎦 Data Architecture: Medallion Design
+## 🗃️ Data Architecture (Medallion Model)
 
-This project uses the **Medallion Architecture** to organize data across three layers:
+This project follows a **Bronze → Silver → Gold** pipeline:
 
-![Data Architecture](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s7h14w1q0s19j7kd4bxr.png)
+![Architecture](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s7h14w1q0s19j7kd4bxr.png)
 
-1. **Bronze Layer**: Raw data ingested directly from the YouTube API.
-2. **Silver Layer**: Cleaned and standardized data, structured for modeling.
-3. **Gold Layer**: Aggregated views used for insights and visualizations via Grafana.
+### 🔹 Bronze Layer
+
+Raw ingestion from the YouTube API (JSON format)
+
+### 🔸 Silver Layer
+
+Cleaned, validated, and structured data (see data flow and model below)
+
+* **Data Flow**
+  ![DataFlow](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m5zcwddaic2eloxrbfgi.png)
+
+* **Data Model**
+  ![Data Model](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4cus0akmrdna6t7y7yqf.png)
+
+### 🟡 Gold Layer
+
+Aggregated data used to generate KPIs and dashboards in Grafana
+
+* **Visualization Sample**
+  ![Visualization](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2e2goyx5dw6yvs6548p3.png)
 
 ---
- ## 📂 This is the repository folder
 
-````
-├── README.MD
-├── __pycache__
-│   ├── channel_lists.cpython-312.pyc
-│   ├── channel_overview.cpython-312.pyc
-│   └── logging.cpython-312.pyc
+## 📈 BI Use Cases
+
+Dashboards and SQL queries answer key questions such as:
+
+* What are the **top-performing videos** per channel?
+* How is each **channel performing over time**?
+* What are the **daily trends** for views and engagement?
+
+---
+
+## 📁 Repository Structure
+
+```text
+├── README.md
 ├── channel_lists.py
 ├── channel_overview.py
 ├── channel_videos.py
-├── project_files
-│   ├── Architecture
-│   │   ├── DataFlow.drawio
-│   │   ├── DataFlow.png                  --- Dataflow Image
-│   │   ├── DataModel.png                 --- DataModel in Silver Layer
-│   │   ├── DataModel.png:Zone.Identifier
-│   │   ├── OverviewArchitecture.drawio
-│   │   └── OverviewArchitecture.png      --- Data Architecture
-│   └── ddl_update_scripts
-│       ├── dim_channels.sql    --DDL and Stored Procedure to update table
-│       ├── dim_videos.sql      --DDL and Stored Procedure to update table
-│       ├── fct_subscribers_views_video_count.sql --DDL and Stored Procedure to update table
-|       |
-│       └── fct_video_statistics.sql --DDL and Stored Procedure to update table
-└── requirments.txt
+├── __pycache__/                        # Compiled Python files
+├── project_files/
+│   ├── Architecture/                  # Draw.io and PNG files for architecture
+│   └── ddl_update_scripts/           # SQL DDLs and procedures
+│       ├── dim_channels.sql
+│       ├── dim_videos.sql
+│       ├── fct_subscribers_views_video_count.sql
+│       └── fct_video_statistics.sql
+└── requirements.txt                   # Python dependencies
 ```
